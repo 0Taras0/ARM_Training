@@ -61,3 +61,4 @@ app.UseStaticFiles(new StaticFileOptions
 await app.SeedData();
 
 app.Run();
+// ПоГОДА НИНІ ПРОСТО ІМБА
