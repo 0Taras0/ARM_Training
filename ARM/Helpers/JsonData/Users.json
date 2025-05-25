@@ -1,0 +1,22 @@
+[
+  {
+    "UserName": "KulinaS",
+    "FirstName": "Sergiy",
+    "LastName": "Kulina",
+    "Email": "kulina@example.com",
+    "Password": "Password123!",
+    "PhoneNumber": "+1234567890",
+    "Image": "kulina.jpg",
+    "Role": "Tutor"
+  },
+  {
+    "UserName": "KubikM",
+    "FirstName": "Maksim",
+    "LastName": "Kubik",
+    "Email": "kubik@example.com",
+    "Password": "SecurePass456!",
+    "PhoneNumber": "+1234567891",
+    "Image": "kubik.jpg",
+    "Role": "Student"
+  }
+]
