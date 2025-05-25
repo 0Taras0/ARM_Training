@@ -43,10 +43,18 @@ app.UseAuthorization();
 
 app.MapStaticAssets();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
-    .WithStaticAssets();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapAreaControllerRoute(
+      name: "tutor_area",
+      areaName: "Tutor",
+      pattern: "tutor/{controller=Dashboard}/{action=Index}/{id?}"
+    );
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}"
+    );
+});
 
 var directory = builder.Configuration["ImagesDir"];
 string stringPath = Path.Combine(Directory.GetCurrentDirectory(), directory);

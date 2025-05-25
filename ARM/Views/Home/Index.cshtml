@@ -2,7 +2,95 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+    .hero-section {
+    background-image: url('https://www.wunu.edu.ua/uploads/header_bg4.jpg'); /* Заміни шлях на свій */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* затемнення для контрасту тексту */
+    z-index: 1;
+}
+
+.hero-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+</style>
+
+<div class="container">
+    <!-- Головний блок -->
+<section class="hero-section text-white text-center py-5">
+    <div class="container">
+        <h1 class="display-4">STUPID WUNU</h1>
+        <p class="lead">Система електронного навчання Західноукраїнського національного університету</p>
+    </div>
+</section>
+
+<!-- Інформаційні картки -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <i class="bi bi-mortarboard display-4 text-primary mb-3"></i>
+                        <h5 class="card-title">Навчання</h5>
+                        <p class="card-text">Доступ до курсів, матеріалів, тестування та завдань.</p>
+                        <a href="#" class="btn btn-outline-primary">Перейти</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <i class="bi bi-person-check display-4 text-success mb-3"></i>
+                        <h5 class="card-title">Вхід</h5>
+                        <p class="card-text">Авторизація через єдиний акаунт WUNU ID.</p>
+                        <a href="/Account/Login" class="btn btn-outline-success">Увійти</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <i class="bi bi-question-circle display-4 text-danger mb-3"></i>
+                        <h5 class="card-title">Підтримка</h5>
+                        <p class="card-text">Зв’яжіться з технічною підтримкою або знайдіть відповіді у FAQ.</p>
+                        <a href="#" class="btn btn-outline-danger">Детальніше</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Новини / Повідомлення -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="mb-4 text-center">Оголошення</h2>
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action">
+                🔔 Оновлення системи SMART WUNU від 20 травня 2025 р.
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+                📢 Розклад дистанційних занять на тиждень.
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+                💡 Поради щодо використання LMS для студентів.
+            </a>
+        </div>
+    </div>
+</section>
+
 </div>

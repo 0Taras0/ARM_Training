@@ -1,0 +1,73 @@
+﻿@model ARM.Areas.Tutor.Models.Group.GroupViewModel
+
+@{
+    ViewData["Title"] = "Групи студентів з оцінками";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (Model != null)
+{
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Група: @Model.Name</h5>
+        </div>
+        <div class="card-body">
+            @if (Model.Students != null && Model.Students.Any())
+            {
+                <table class="table table-bordered table-striped align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Студент</th>
+                            <th>Оцінки</th>
+                            <th>Середній бал</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var student in Model.Students)
+                        {
+                            <tr>
+                                <td class="d-flex align-items-center">
+                                    <img src="/images/200_@student.Image" alt="Фото студента" style="width:40px; height:40px; object-fit:cover; border-radius:50%; margin-right:10px;" />
+                                    <span>@student.Name</span>
+                                </td>
+                                <td>
+                                    @if (student.Grades != null && student.Grades.Any())
+                                    {
+                                        @string.Join(", ", student.Grades)
+                                    }
+                                    else
+                                    {
+                                        <em>Немає оцінок</em>
+                                    }
+                                </td>
+                                <td>
+                                    @if (student.Grades != null && student.Grades.Any())
+                                    {
+                                        @(student.Grades.Average().ToString("0.00"))
+                                    }
+                                    else
+                                    {
+                                        <em>—</em>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="alert alert-info mb-0">
+                    У цій групі ще немає студентів.
+                </div>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning">
+        Групу не знайдено.
+    </div>
+}

@@ -1,0 +1,45 @@
+﻿@model List<ARM.Models.Subject.SubjectViewModel>
+
+<h2>Список предметів з оцінками</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Назва предмету</th>
+            <th>Група</th>
+            <th>Викладач</th>
+            <th>Оцінки</th>
+            <th>Середня оцінка</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var subject in Model)
+        {
+            <tr>
+                <td>@subject.Name</td>
+                <td>@subject.GroupName</td>
+                <td>@subject.TutorName</td>
+                <td>
+                    @if (subject.Grades.Any())
+                    {
+                        @string.Join(", ", subject.Grades)
+                    }
+                    else
+                    {
+                        <span class="text-muted">Немає оцінок</span>
+                    }
+                </td>
+                <td>
+                    @if (subject.Grades.Any())
+                    {
+                        @(subject.Grades.Average().ToString("0.00"))
+                    }
+                    else
+                    {
+                        <span class="text-muted">-</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

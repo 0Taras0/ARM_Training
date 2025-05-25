@@ -1,0 +1,37 @@
+﻿@model List<ARM.Areas.Tutor.Models.Group.GroupInfoViewModel>
+
+@{
+    ViewData["Title"] = "Список груп";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (Model != null && Model.Any())
+{
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach (var group in Model)
+        {
+            <div class="col">
+                <a asp-controller="Subject"
+                   asp-action="GetSubjects"
+                   asp-route-id="@group.Id"
+                   class="text-decoration-none text-dark">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Група: @group.Name</h5>
+                        </div>
+                        <div class="card-footer text-end bg-light">
+                            <small class="text-primary">Переглянути →</small>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="alert alert-info">
+        Групи не знайдено.
+    </div>
+}

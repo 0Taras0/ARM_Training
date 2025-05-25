@@ -1,32 +1,31 @@
-using System.Diagnostics;
-using ARM.Models;
+using ARM.Data;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace ARM.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController(AppDbContext context) : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
-        }
+            int? studentId = null;
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+            if (User.IsInRole("Student"))
+            {
+                var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+                studentId = context.Students
+                    .Where(s => s.UserId == userId)
+                    .Select(s => s.Id)
+                    .FirstOrDefault();
+            }
+
+            ViewBag.StudentId = studentId;
+
+            return View();
         }
     }
 }
