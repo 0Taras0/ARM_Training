@@ -73,141 +73,150 @@ namespace ARM.Data
         }
         private static async Task SeedSubjects(AppDbContext context, IImageService imageService)
         {
-            var jsonFile = Path.Combine(Directory.GetCurrentDirectory(), "Helpers", "JsonData", "Subjects.json");
-            if (File.Exists(jsonFile))
+            if (!context.Subjects.Any())
             {
-                var jsonData = await File.ReadAllTextAsync(jsonFile);
-                try
+                var jsonFile = Path.Combine(Directory.GetCurrentDirectory(), "Helpers", "JsonData", "Subjects.json");
+                if (File.Exists(jsonFile))
                 {
-                    var subjects = JsonSerializer.Deserialize<List<SeederSubjectModel>>(jsonData);
-                    foreach (var model in subjects)
+                    var jsonData = await File.ReadAllTextAsync(jsonFile);
+                    try
                     {
-                        var curator = await context.Tutors
-                            .FirstOrDefaultAsync(u => u.User.UserName == model.CuratorUserName);
-
-                        if (curator == null)
+                        var subjects = JsonSerializer.Deserialize<List<SeederSubjectModel>>(jsonData);
+                        foreach (var model in subjects)
                         {
-                            Console.WriteLine($"Curator '{model.CuratorUserName}' not found for group '{model.Name}'");
-                            continue;
+                            var curator = await context.Tutors
+                                .FirstOrDefaultAsync(u => u.User.UserName == model.CuratorUserName);
+
+                            if (curator == null)
+                            {
+                                Console.WriteLine($"Curator '{model.CuratorUserName}' not found for group '{model.Name}'");
+                                continue;
+                            }
+
+                            var group = await context.Groups
+                                .FirstOrDefaultAsync(g => g.Name == model.GroupName);
+                            if (group == null)
+                            {
+                                Console.WriteLine($"Group '{model.GroupName}' not found for subject '{model.Name}'");
+                                continue;
+                            }
+
+                            var subjectEntity = new SubjectEntity
+                            {
+                                Name = model.Name,
+                                GroupId = group.Id,
+                                TutorId = curator.Id
+                            };
+
+                            await context.Subjects.AddAsync(subjectEntity);
                         }
-
-                        var group = await context.Groups
-                            .FirstOrDefaultAsync(g => g.Name == model.GroupName);
-                        if (group == null)
-                        {
-                            Console.WriteLine($"Group '{model.GroupName}' not found for subject '{model.Name}'");
-                            continue;
-                        }
-
-                        var subjectEntity = new SubjectEntity
-                        {
-                            Name = model.Name,
-                            GroupId = group.Id,
-                            TutorId = curator.Id
-                        };
-
-                        await context.Subjects.AddAsync(subjectEntity);
+                        await context.SaveChangesAsync();
                     }
-                    await context.SaveChangesAsync();
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error Json Parse Data {0}", ex.Message);
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    Console.WriteLine("Error Json Parse Data {0}", ex.Message);
+                    Console.WriteLine("Not Found File Users.json");
                 }
-            }
-            else
-            {
-                Console.WriteLine("Not Found File Users.json");
             }
         }
 
         private static async Task SeedTutors(AppDbContext context, IImageService imageService)
         {
-            var jsonFile = Path.Combine(Directory.GetCurrentDirectory(), "Helpers", "JsonData", "Tutors.json");
-            if (File.Exists(jsonFile))
+            if (!context.Tutors.Any())
             {
-                var jsonData = await File.ReadAllTextAsync(jsonFile);
-                try
+                var jsonFile = Path.Combine(Directory.GetCurrentDirectory(), "Helpers", "JsonData", "Tutors.json");
+                if (File.Exists(jsonFile))
                 {
-                    var tutors = JsonSerializer.Deserialize<List<SeederTutorModel>>(jsonData);
-                    foreach (var model in tutors)
+                    var jsonData = await File.ReadAllTextAsync(jsonFile);
+                    try
                     {
-                        var user = await context.Users
-                            .FirstOrDefaultAsync(u => u.UserName == model.UserName);
-
-                        if (user == null)
+                        var tutors = JsonSerializer.Deserialize<List<SeederTutorModel>>(jsonData);
+                        foreach (var model in tutors)
                         {
-                            Console.WriteLine($"User '{model.UserName}'");
-                            continue;
+                            var user = await context.Users
+                                .FirstOrDefaultAsync(u => u.UserName == model.UserName);
+
+                            if (user == null)
+                            {
+                                Console.WriteLine($"User '{model.UserName}'");
+                                continue;
+                            }
+
+                            var tutorEntity = new TutorEntity
+                            {
+                                UserId = user.Id
+                            };
+
+                            await context.Tutors.AddAsync(tutorEntity);
                         }
-
-                        var tutorEntity = new TutorEntity
-                        {
-                            UserId = user.Id
-                        };
-
-                        await context.Tutors.AddAsync(tutorEntity);
+                        await context.SaveChangesAsync();
                     }
-                    await context.SaveChangesAsync();
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error Json Parse Data {0}", ex.Message);
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    Console.WriteLine("Error Json Parse Data {0}", ex.Message);
+                    Console.WriteLine("Not Found File Users.json");
                 }
-            }
-            else
-            {
-                Console.WriteLine("Not Found File Users.json");
             }
         }
 
         private static async Task SeedStudents(AppDbContext context, IImageService imageService)
         {
-            var jsonFile = Path.Combine(Directory.GetCurrentDirectory(), "Helpers", "JsonData", "Students.json");
-            if (File.Exists(jsonFile))
+            if (!context.Students.Any())
             {
-                var jsonData = await File.ReadAllTextAsync(jsonFile);
-                try
+                var jsonFile = Path.Combine(Directory.GetCurrentDirectory(), "Helpers", "JsonData", "Students.json");
+                if (File.Exists(jsonFile))
                 {
-                    var students = JsonSerializer.Deserialize<List<SeederStudentModel>>(jsonData);
-                    foreach (var model in students)
+                    var jsonData = await File.ReadAllTextAsync(jsonFile);
+                    try
                     {
-                        var user = await context.Users
-                            .FirstOrDefaultAsync(u => u.UserName == model.UserName);
-
-                        if (user == null)
+                        var students = JsonSerializer.Deserialize<List<SeederStudentModel>>(jsonData);
+                        foreach (var model in students)
                         {
-                            Console.WriteLine($"User '{model.UserName}'");
-                            continue;
+                            var user = await context.Users
+                                .FirstOrDefaultAsync(u => u.UserName == model.UserName);
+
+                            if (user == null)
+                            {
+                                Console.WriteLine($"User '{model.UserName}'");
+                                continue;
+                            }
+
+                            var group = await context.Groups
+                                .FirstOrDefaultAsync(g => g.Name == model.GroupName);
+
+                            if (group == null)
+                            {
+                                Console.WriteLine($"Group '{model.GroupName}' not found for user '{model.UserName}'");
+                                continue;
+                            }
+
+                            var studentEntity = new StudentEntity
+                            {
+                                UserId = user.Id,
+                                GroupId = group.Id
+                            };
+
+                            await context.Students.AddAsync(studentEntity);
                         }
-
-                        var group = await context.Groups
-                            .FirstOrDefaultAsync(g => g.Name == model.GroupName);
-
-                        if (group == null)
-                        {
-                            Console.WriteLine($"Group '{model.GroupName}' not found for user '{model.UserName}'");
-                            continue;
-                        }
-
-                        var studentEntity = new StudentEntity
-                        {
-                            UserId = user.Id,
-                            GroupId = group.Id
-                        };
-
-                        await context.Students.AddAsync(studentEntity);
+                        await context.SaveChangesAsync();
                     }
-                    await context.SaveChangesAsync();
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error Json Parse Data {0}", ex.Message);
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    Console.WriteLine("Error Json Parse Data {0}", ex.Message);
+                    Console.WriteLine("Not Found File Users.json");
                 }
-            }
-            else
-            {
-                Console.WriteLine("Not Found File Users.json");
             }
         }
 
@@ -230,93 +239,99 @@ namespace ARM.Data
         }
         private static async Task SeedGroups(AppDbContext context, IImageService imageService)
         {
-            var jsonFile = Path.Combine(Directory.GetCurrentDirectory(), "Helpers", "JsonData", "Groups.json");
-            if (File.Exists(jsonFile))
+            if (!context.Groups.Any())
             {
-                var jsonData = await File.ReadAllTextAsync(jsonFile);
-                try
+                var jsonFile = Path.Combine(Directory.GetCurrentDirectory(), "Helpers", "JsonData", "Groups.json");
+                if (File.Exists(jsonFile))
                 {
-                    var groups = JsonSerializer.Deserialize<List<SeederGroupModel>>(jsonData);
-                    foreach (var model in groups)
+                    var jsonData = await File.ReadAllTextAsync(jsonFile);
+                    try
                     {
-                        var curator = await context.Tutors
-                            .FirstOrDefaultAsync(u => u.User.UserName == model.CuratorUserName);
-
-                        if (curator == null)
+                        var groups = JsonSerializer.Deserialize<List<SeederGroupModel>>(jsonData);
+                        foreach (var model in groups)
                         {
-                            Console.WriteLine($"Curator '{model.CuratorUserName}' not found for group '{model.Name}'");
-                            continue;
+                            var curator = await context.Tutors
+                                .FirstOrDefaultAsync(u => u.User.UserName == model.CuratorUserName);
+
+                            if (curator == null)
+                            {
+                                Console.WriteLine($"Curator '{model.CuratorUserName}' not found for group '{model.Name}'");
+                                continue;
+                            }
+
+                            var groupEntity = new GroupEntity
+                            {
+                                Name = model.Name,
+                                CuratorId = curator.Id
+                            };
+
+                            await context.Groups.AddAsync(groupEntity);
                         }
-
-                        var groupEntity = new GroupEntity
-                        {
-                            Name = model.Name,
-                            CuratorId = curator.Id
-                        };
-
-                        await context.Groups.AddAsync(groupEntity);
+                        await context.SaveChangesAsync();
                     }
-                    await context.SaveChangesAsync();
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error Json Parse Data {0}", ex.Message);
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    Console.WriteLine("Error Json Parse Data {0}", ex.Message);
+                    Console.WriteLine("Not Found File Users.json");
                 }
-            }
-            else
-            {
-                Console.WriteLine("Not Found File Users.json");
             }
         }
 
         private static async Task SeedUsers(AppDbContext context, IMapper mapper, UserManager<UserEntity> userManager, IImageService imageService)
         {
-            var jsonFile = Path.Combine(Directory.GetCurrentDirectory(), "Helpers", "JsonData", "Users.json");
-            if (File.Exists(jsonFile))
+            if (!context.Users.Any())
             {
-                var jsonData = await File.ReadAllTextAsync(jsonFile);
-                try
+                var jsonFile = Path.Combine(Directory.GetCurrentDirectory(), "Helpers", "JsonData", "Users.json");
+                if (File.Exists(jsonFile))
                 {
-                    var users = JsonSerializer.Deserialize<List<SeederUserModel>>(jsonData);
-                    foreach (var model in users)
+                    var jsonData = await File.ReadAllTextAsync(jsonFile);
+                    try
                     {
-                        var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "Helpers", "SeedImages", "Users", model.Image);
-                        var formFile = await LoadImageAsFormFileAsync(imagePath, model.Image);
-
-                        if (formFile == null)
+                        var users = JsonSerializer.Deserialize<List<SeederUserModel>>(jsonData);
+                        foreach (var model in users)
                         {
-                            Console.WriteLine($"Image file not found: {model.Image}");
-                            continue;
-                        }
+                            var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "Helpers", "SeedImages", "Users", model.Image);
+                            var formFile = await LoadImageAsFormFileAsync(imagePath, model.Image);
 
-                        var entity = mapper.Map<UserEntity>(model);
-                        entity.Image = await imageService.SaveImageAsync(formFile);
-                        var result = await userManager.CreateAsync(entity, model.Password);
-
-                        if (result.Succeeded)
-                        {
-                            Console.WriteLine($"Користувача успішно створено {entity.LastName} {entity.FirstName}!");
-                            await userManager.AddToRoleAsync(entity, model.Role);
-                        }
-                        else
-                        {
-                            Console.WriteLine($"Помилка створення користувача:");
-                            foreach (var error in result.Errors)
+                            if (formFile == null)
                             {
-                                Console.WriteLine($"- {error.Code}: {error.Description}");
+                                Console.WriteLine($"Image file not found: {model.Image}");
+                                continue;
+                            }
+
+                            var entity = mapper.Map<UserEntity>(model);
+                            entity.Image = await imageService.SaveImageAsync(formFile);
+                            var result = await userManager.CreateAsync(entity, model.Password);
+
+                            if (result.Succeeded)
+                            {
+                                Console.WriteLine($"Користувача успішно створено {entity.LastName} {entity.FirstName}!");
+                                await userManager.AddToRoleAsync(entity, model.Role);
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Помилка створення користувача:");
+                                foreach (var error in result.Errors)
+                                {
+                                    Console.WriteLine($"- {error.Code}: {error.Description}");
+                                }
                             }
                         }
+                        await context.SaveChangesAsync();
                     }
-                    await context.SaveChangesAsync();
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error Json Parse Data {0}", ex.Message);
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    Console.WriteLine("Error Json Parse Data {0}", ex.Message);
+                    Console.WriteLine("Not Found File Users.json");
                 }
-            }
-            else
-            {
-                Console.WriteLine("Not Found File Users.json");
             }
         }
     }
