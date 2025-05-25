@@ -18,5 +18,165 @@
     "PhoneNumber": "+1234567891",
     "Image": "kubik.jpg",
     "Role": "Student"
+  },
+  {
+    "UserName": "VarenikD",
+    "FirstName": "Danya",
+    "LastName": "Varenik",
+    "Email": "dany228@example.com",
+    "Password": "ILoVeVarenik122",
+    "PhoneNumber": "+23414141241",
+    "Image": "varenik.jpg",
+    "Role": "Student"
+  },
+  {
+    "UserName": "DudkaV",
+    "FirstName": "Vitalik",
+    "LastName": "Dudka",
+    "Email": "VItalkaVDudKA2228@example.com",
+    "Password": "Dududududududu228",
+    "PhoneNumber": "+3809800123003",
+    "Image": "ViktorDudka.jpg",
+    "Role": "Student"
+  },
+  {
+    "UserName": "Nazarini",
+    "FirstName": "Romanuk",
+    "LastName": "Nazar",
+    "Email": "MiFIx22@example.com",
+    "Password": "IplayBrawlstart",
+    "PhoneNumber": "+49333444111",
+    "Image": "nazarini.jpg",
+    "Role": "Student"
+  },
+  {
+    "UserName": "zoloivan",
+    "FirstName": "Ivan",
+    "LastName": "Zolo",
+    "Email": "ivanzolo204@example.com",
+    "Password": "ivanzolo2004",
+    "PhoneNumber": "+38098323412",
+    "Image": "ZoloIvan.jpg",
+    "Role": "Student"
+  },
+  {
+    "UserName": "SvitlanaK23",
+    "FirstName": "sveta",
+    "LastName": "kovalzuk",
+    "Email": "svitlana.k@example.com",
+    "Password": "MyCat1234!",
+    "PhoneNumber": "+380931112233",
+    "Image": "svitlanak.jpg",
+    "Role": "Student"
+  },
+  {
+    "UserName": "AndriiTech",
+    "FirstName": "adriy",
+    "LastName": "melnik",
+    "Email": "andrii.m@example.com",
+    "Password": "SecurePass2024",
+    "PhoneNumber": "+380671234567",
+    "Image": "mclovin.jpg",
+    "Role": "Student"
+  },
+  {
+    "UserName": "OlenaMiro",
+    "FirstName": "olena",
+    "LastName": "mirosinko",
+    "Email": "olena.miro@example.com",
+    "Password": "Olena_2025!",
+    "PhoneNumber": "+380503333444",
+    "Image": "olenamiro.jpg",
+    "Role": "Student"
+  },
+  {
+    "UserName": "VitaliiDev",
+    "FirstName": "vitaliy",
+    "LastName": "shevzenko",
+    "Email": "vitalii.dev@example.com",
+    "Password": "V1taliiDevPass",
+    "PhoneNumber": "+380661234890",
+    "Image": "vitaliidev.jpg",
+    "Role": "Student"
+  },
+  {
+    "UserName": "tarasik",
+    "FirstName": "juk",
+    "LastName": "taras",
+    "Email": "tarass.dev@example.com",
+    "Password": "@123@pass@/fsas",
+    "PhoneNumber": "+380435334890",
+    "Image": "tarasini.jpg",
+    "Role": "Student"
+  },
+  {
+    "UserName": "UsykOleksandr",
+    "FirstName": "Oleksander",
+    "LastName": "usik",
+    "Email": "o.usyk@example.com",
+    "Password": "BoxingChamp!",
+    "PhoneNumber": "+380931111111",
+    "Image": "usyk.jpg",
+    "Role": "Student"
+  },
+  {
+    "UserName": "JamalaSinger",
+    "FirstName": "Susana",
+    "LastName": "Djamalidinova",
+    "Email": "jamala.music@example.com",
+    "Password": "Eurovision2016",
+    "PhoneNumber": "+380502222222",
+    "Image": "jamala.jpg",
+    "Role": "Student"
+  },
+  {
+    "UserName": "KlichkoV",
+    "FirstName": "vitaliy",
+    "LastName": "klichko",
+    "Email": "v.klychko@example.com",
+    "Password": "KyivMayor2024",
+    "PhoneNumber": "+380631234567",
+    "Image": "klichko.jpg",
+    "Role": "Student"
+  },
+  {
+    "UserName": "MonatikD",
+    "FirstName": "dmitro",
+    "LastName": "monatik",
+    "Email": "d.monatik@example.com",
+    "Password": "MonatikMusic123",
+    "PhoneNumber": "+380673334455",
+    "Image": "monatik.jpg",
+    "Role": "Student"
+  },
+  {
+    "UserName": "PoroshenkoP",
+    "FirstName": "Petro",
+    "LastName": "poroshenko",
+    "Email": "p.roshen@example.com",
+    "Password": "roshenzavodkiyi",
+    "PhoneNumber": "+380673312355",
+    "Image": "roshen.jpb",
+    "Role": "Student"
+  },
+  {
+    "UserName": "ViktoriaK",
+    "FirstName": "Vika",
+    "LastName": "Kurulak",
+    "Email": "v.ternopil@example.com",
+    "Password": "dengidengimoney",
+    "PhoneNumber": "+380993312355",
+    "Image": "viktoria.jpb",
+    "Role": "Student"
+  },
+  {
+    "UserName": "AlisherT",
+    "FirstName": "alisher",
+    "LastName": "tagirovish",
+    "Email": "morgenstern@example.com",
+    "Password": "merinnowiy2224",
+    "PhoneNumber": "+380993512355",
+    "Image": "alisher.jpg",
+    "Role": "Student"
   }
 ]

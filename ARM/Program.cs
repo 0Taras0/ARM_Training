@@ -61,4 +61,3 @@ app.UseStaticFiles(new StaticFileOptions
 await app.SeedData();
 
 app.Run();
-// оНцндю мхм╡ опнярн ╡лаю
