@@ -61,4 +61,4 @@ app.UseStaticFiles(new StaticFileOptions
 await app.SeedData();
 
 app.Run();
-// –ü–æ–ì–û–î–ê –ù–ò–ù–Ü –ü–†–û–°–¢–û –Ü–ú–ë–ê
+// œÓ√Œƒ¿ Õ»Õ≤ œ–Œ—“Œ ≤Ã¡¿
